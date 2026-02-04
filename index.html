@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Annuaire santé Pays Cœur d&#39;hérault</title>
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div id="bandeau">
+  <h1>Cartographie des médecins libéraux - Pays Cœur d’Hérault</h1>
+  <div class="badge">🩺</div>
+</div>
+
+<div id="double-bouton">
+  <div class="btn btn-scenario">Itinéraire</div>
+  <div class="separator"></div>
+  <div class="btn btn-naviguer">Naviguer</div>
+</div>
+
+<div id="info-fenetre">
+  <p class="texte-medium">Observatoire territorial - Accès aux soins</p>
+  <p class="texte-petit"><b>Itinéraire</b> : place un point de départ puis trouve le professionnel le plus proche.</p>
+  <p class="texte-petit"><b>Naviguer</b> : explore et filtre par profession / commune.</p>
+</div>
+
+<!-- Fenêtre Itinéraire -->
+<div id="fenetre-scenario" class="fenetre">
+  <h2>Choisir une profession</h2>
+  <select id="paramChoixProf_itineraire">
+    <option value="">Choisir…</option>
+  </select>
+
+  <h2>Point de départ</h2>
+
+  <!-- ✅ Ligne 1 : placer un point / exécuter -->
+  <div class="row">
+    <button id="toggleButton" class="btnAction">Placer un point</button>
+    <button id="executeButton" class="btnAction" disabled>Exécuter</button>
+  </div>
+
+  <!-- ✅ Ligne 2 : géolocalisation -->
+  <div class="row">
+    <button id="geoButton" class="btnAction secondary" type="button">Me géolocaliser</button>
+  </div>
+
+  <div id="message_itineraire" class="message"></div>
+</div>
+
+<!-- Fenêtre Naviguer -->
+<div id="fenetre-naviguer" class="fenetre">
+  <h2>Profession</h2>
+  <select id="paramChoixProf_naviguer">
+    <option value="">Toutes</option>
+  </select>
+
+  <h2>Commune</h2>
+  <select id="paramChoixCom_naviguer">
+    <option value="">Toutes</option>
+  </select>
+
+  <div class="row">
+    <button id="btnReset" class="btnAction secondary">Réinitialiser</button>
+  </div>
+
+  <div class="hint">Clique sur un cluster pour zoomer, puis sur un point pour la fiche.</div>
+</div>
+
+<div id="map"></div>
+
+<div id="loader">
+  <div class="loader-card">
+    <div class="spinner"></div>
+    <div>Calcul en cours…</div>
+  </div>
+</div>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+<script src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,275 @@
+:root{
+  --orange:#ec663a;
+  --orange-dark:#b84623;
+  --panel:#ff9966;
+  --text:#2b2b2b;
+  --muted:#6b6b6b;
+  --border:#e6e6e6;
+}
+
+html, body{ height:100%; margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--text); }
+
+/* ✅ MAP plus robuste (évite les soucis de hauteur/overlay) */
+#map{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* BANDEAU */
+#bandeau{
+  position: fixed; top: 10px; left: 0;
+  height: 76px; width: 860px;
+  background: var(--orange);
+  z-index: 10;
+  border-radius: 0 50px 50px 0;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+#bandeau h1{ margin:0; font-size: 26px; font-weight: 900; color:#fff; }
+
+/* Logo à droite */
+#bandeau .badge{
+  position:absolute; right: 10px; top:50%;
+  transform: translateY(-50%);
+  width: 45px; height: 52px; border-radius: 14px;
+  background: rgba(255,255,255,0.18);
+  display:flex; align-items:center; justify-content:center;
+}
+#bandeau .badge img{
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* Contrôles MapLibre sous le bandeau */
+.maplibregl-ctrl-top-right{ top: 95px !important; right: 12px !important; }
+
+/* DOUBLE BOUTON */
+#double-bouton{
+  position:absolute; top: 110px; left: 20px;
+  display:flex; align-items:center;
+  background: var(--orange);
+  border-radius: 8px; overflow:hidden;
+  padding: 6px 14px; z-index: 5;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.18);
+}
+#double-bouton .btn{
+  padding: 14px 52px; cursor:pointer;
+  font-size: 22px; font-weight: 900; color:#fff;
+  transition: transform .15s ease, background .2s ease;
+}
+#double-bouton .btn:hover{ background: rgba(0,0,0,0.06); transform: scale(1.07); }
+#double-bouton .separator{
+  width: 3px; height: 30px; background: #fff;
+  position:absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%); opacity: .9;
+}
+
+/* FENETRE INFO */
+#info-fenetre{
+  position:absolute; top: 200px; left: 20px;
+  width: 520px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.10);
+  z-index: 5;
+}
+.texte-medium{ margin:0 0 10px 0; font-size: 18px; font-weight: 900; color: #fff; }
+.texte-petit{ margin: 0 0 6px 0; font-size: 14px; color:#2b2b2b; line-height: 1.4; }
+
+/* FENETRES */
+.fenetre{
+  position:absolute; top: 200px; left: 20px;
+  width: 520px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.10);
+  z-index: 6;
+  display:none;
+}
+.fenetre h2{
+  font-size: 13px; margin: 12px 0 8px 0;
+  color:#fff; text-transform: uppercase; letter-spacing: .02em;
+}
+select{
+  width: 100%;
+  padding: 10px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline:none;
+  font-size: 14px;
+  background: #fff;
+}
+select:focus{
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(236,102,58,0.25);
+}
+
+.row{ display:flex; gap:10px; margin-top: 10px; flex-wrap: wrap; }
+
+.btnAction{
+  flex:1;
+  border:none; border-radius:10px;
+  padding: 10px 12px;
+  background: var(--orange); color:#fff;
+  font-weight: 900; cursor:pointer;
+  transition: background .2s ease, transform .1s ease;
+}
+.btnAction:hover{ background: var(--orange-dark); }
+.btnAction:active{ transform: scale(0.98); }
+.btnAction:disabled{ background:#cfcfcf; cursor:not-allowed; }
+
+.btnAction.secondary{
+  background:#fff; color: var(--orange-dark);
+  border: 2px solid var(--orange);
+}
+.btnAction.secondary:hover{ background: rgba(236,102,58,0.10); }
+
+/* ✅ Bouton géoloc : pleine largeur + espacement propre */
+#geoButton{
+  width: 100%;
+  flex: 1 1 100%;
+}
+
+/* petites aides */
+.hint{ margin-top: 10px; font-size: 12px; color: #2b2b2b; line-height:1.4; }
+
+.message{ margin-top: 12px; font-size: 13px; color:#333; }
+.message h3{ margin: 8px 0 6px 0; color: var(--orange-dark); }
+
+/* LOADER */
+#loader{
+  position: fixed; inset: 0;
+  display:none; align-items:center; justify-content:center;
+  background: rgba(0,0,0,0.20);
+  z-index: 999;
+}
+.loader-card{
+  background:#fff; border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display:flex; align-items:center; gap: 10px;
+  font-weight: 800;
+}
+.spinner{
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 3px solid #ddd; border-top-color: var(--orange);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin{ to{ transform: rotate(360deg);} }
+
+/* ✅ BASEMAP PANEL (1 seule définition, propre) */
+.basemap-panel{
+  position: absolute;
+  top: 10px;          /* tout en haut */
+  right: 12px;        /* à droite */
+  width: 190px;
+  background: #F28C28;
+  border-radius: 12px;
+  padding: 10px 12px;
+  z-index: 20;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.basemap-title{
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: .03em;
+}
+
+.basemap-panel select{
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 800;
+  background: #ffffff;
+  color: #333;
+  cursor: pointer;
+}
+
+/* ===========================
+   POPUPS (style carte)
+=========================== */
+.maplibregl-popup-content{
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25) !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.popup-card{
+  width: 420px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.popup-band{
+  position: relative;
+  padding: 16px 18px;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  text-align: center;
+}
+
+.med-band{ background: #ec663a; }
+.epci-band{ background: #ec663a; }
+
+.popup-title{
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.popup-body{
+  padding: 14px 18px 16px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-transform: none;
+}
+
+.popup-row{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.popup-row + .popup-row{
+  border-top: 1px solid #eee;
+}
+
+.popup-label{
+  font-weight: 900;
+  color: #111;
+}
+
+.popup-value{
+  color: #222;
+}
+
+/* bouton X décoratif (MapLibre garde le sien) */
+.popup-close{
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  opacity: .95;
+}
